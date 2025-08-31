@@ -29,20 +29,31 @@ export async function setTokenSet(tokenSet:any, tenantId?:string, tenantName?:st
 
 export async function withXero<T>(fn: (x: XeroClient, tenantId: string) => Promise<T>) {
   const integ = await getXeroIntegration();
-  if (!integ.tokenSet) throw new Error('Xero not connected');
-  if (!integ.tenantId) throw new Error('No Xero tenant selected');
+  if (!integ?.tokenSet) throw new Error('Xero not connected');
+  if (!integ?.tenantId) throw new Error('No Xero tenant selected');
 
   const xero = newXeroClient();
+
+  // Load the plain JSON token set you stored in Mongo
   await xero.setTokenSet(integ.tokenSet);
 
+  // Read the SDK's TokenSet instance (has .expired())
+  let ts = await xero.readTokenSet();
+
   // Refresh if needed
-  if (xero.isTokenSetExpired()) {
-    const newSet = await xero.refreshToken();
-    await setTokenSet(newSet);
+  if (!ts || ts.expired()) {
+    const refreshed = await xero.refreshToken();
+    await setTokenSet(refreshed, integ.tenantId, integ.tenantName);
+    ts = refreshed;
   }
 
-  const res = await fn(xero, integ.tenantId);
-  // persist potentially updated tokens
+  // (Usually not necessary, but safe if tenants array isn't loaded)
+  if (!xero.tenants?.length) await xero.updateTenants();
+
+  const result = await fn(xero, integ.tenantId);
+
+  // Persist possibly rotated refresh token after the API call
   await setTokenSet(await xero.readTokenSet(), integ.tenantId, integ.tenantName);
-  return res;
+
+  return result;
 }
