@@ -1,0 +1,33 @@
+[
+  {
+    "id": "gid://shopify/Order/1001",
+    "name": "#1001",
+    "createdAt": "2025-08-01T10:00:00Z",
+    "currencyCode": "AUD",
+    "lineItems": { "edges": [
+      { "node": { "id": "gid://shopify/LineItem/1", "vendor": "Brand A", "sku": "A-TEE-RED-S", "quantity": 2, "discountedTotalSet": { "shopMoney": { "amount": "120.00" } } } },
+      { "node": { "id": "gid://shopify/LineItem/2", "vendor": "Brand B", "sku": "B-HAT-BLK",   "quantity": 1, "discountedTotalSet": { "shopMoney": { "amount": "40.00" } } } }
+    ]},
+    "shippingLines": { "edges": [
+      { "node": { "priceSet": { "shopMoney": { "amount": "15.00" } } } }
+    ]},
+    "refunds": { "edges": [] }
+  },
+  {
+    "id": "gid://shopify/Order/1002",
+    "name": "#1002",
+    "createdAt": "2025-08-03T12:30:00Z",
+    "currencyCode": "AUD",
+    "lineItems": { "edges": [
+      { "node": { "id": "gid://shopify/LineItem/3", "vendor": "Brand A", "sku": "A-TEE-RED-M", "quantity": 1, "discountedTotalSet": { "shopMoney": { "amount": "60.00" } } } }
+    ]},
+    "shippingLines": { "edges": [
+      { "node": { "priceSet": { "shopMoney": { "amount": "10.00" } } } }
+    ]},
+    "refunds": { "edges": [
+      { "node": { "refundLineItems": { "edges": [
+        { "node": { "quantity": 1, "subtotalSet": { "shopMoney": { "amount": "60.00" } }, "lineItem": { "id": "gid://shopify/LineItem/3", "vendor": "Brand A", "sku": "A-TEE-RED-M" } } }
+      ]}}}
+    ] }
+  }
+]
