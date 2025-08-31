@@ -307,7 +307,7 @@ export default function XeroPage() {
                   <a className="underline font-medium hover:text-slate-800 transition-colors" href="/dashboard/vendors">
                     Vendors
                   </a>{' '}
-                  and click "Link" next to any vendor to jump back here with that vendor pre-selected.
+                  and click &quot;Link&quot; next to any vendor to jump back here with that vendor pre-selected.
                 </p>
               </div>
             </div>
@@ -481,7 +481,7 @@ export default function XeroPage() {
           {search && results.length === 0 && !searching && status?.connected && (
             <div className="text-center py-8 text-slate-500">
               <Search className="w-8 h-8 mx-auto mb-3 text-slate-300" />
-              <p>No contacts found for "{search}"</p>
+              <p>No contacts found for &quot;{search}&quot;</p>
               <p className="text-sm mt-1">Try a different search term or create a new contact</p>
             </div>
           )}

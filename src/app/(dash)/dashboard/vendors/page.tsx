@@ -262,7 +262,7 @@ export default function VendorsPage() {
                   <p>• <strong>Required columns:</strong> name, commissionPct (or similar)</p>
                   <p>• <strong>Optional columns:</strong> email, website</p>
                   <p>• <strong>Commission format:</strong> Numeric value (e.g., 15 for 15%)</p>
-                  <p>• <strong>Supported headers:</strong> "Brand", "Supplier / Brand", "Commission Rate", etc.</p>
+                  <p>• <strong>Supported headers:</strong> &quot;Brand&quot;, &quot;Supplier / Brand&quot;, &quot;Commission Rate&quot;, etc.</p>
                 </div>
               </div>
             </div>
